@@ -15,4 +15,4 @@ class TransactionViewSet(ActionSerializerClassMixin,
     serializer_class = serializers.TransactionSerializer
 
     def get_queryset(self):
-        return models.Transaction.objects.all()
+        return models.Transaction.objects.filter(user=self.request.user).all()
