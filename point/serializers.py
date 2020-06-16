@@ -16,6 +16,11 @@ class TransactionCreationSerializer(s.ModelSerializer):
         fields = ('id', 'type', 'value', 'date', 'description')
         read_only_fields = ('date',)
 
+    def validate_value(self, value):
+        if value <= 0:
+            raise exceptions.ValidationError('value must be positive')
+        return value
+
     def validate(self, attrs):
         user = self.context['request'].user
         if attrs['type'] == settings.TransactionType.exchange:
