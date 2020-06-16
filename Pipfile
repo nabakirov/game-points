@@ -12,6 +12,7 @@ python-decouple = "*"
 django-cors-headers = "*"
 dj-database-url = "*"
 djangorestframework-simplejwt = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"
