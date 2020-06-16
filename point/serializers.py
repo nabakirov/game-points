@@ -6,14 +6,14 @@ from user.serializers import UserSerializer
 class TransactionSerializer(s.ModelSerializer):
     class Meta:
         model = models.Transaction
-        fields = ('id', 'user', 'type', 'value', 'date')
+        fields = ('id', 'user', 'type', 'value', 'date', 'description')
         read_only_fields = ('date',)
 
 
 class TransactionCreationSerializer(s.ModelSerializer):
     class Meta:
         model = models.Transaction
-        fields = ('id', 'type', 'value', 'date')
+        fields = ('id', 'type', 'value', 'date', 'description')
         read_only_fields = ('date',)
 
     def validate(self, attrs):
@@ -37,6 +37,6 @@ class TransactionCreationSerializer(s.ModelSerializer):
 class TransactionDetailSerializer(s.ModelSerializer):
     class Meta:
         model = models.Transaction
-        fields = ('id', 'user', 'type', 'value', 'date')
+        fields = ('id', 'user', 'type', 'value', 'date', 'description')
         read_only_fields = ('date',)
     user = UserSerializer()
