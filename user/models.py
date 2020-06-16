@@ -1,13 +1,33 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from .settings import PROFILE_UPLOAD_DIR
+
+
+class UserManager(BaseUserManager):
+    def create_superuser(self, username, password):
+        user = self.model(username=username)
+        user.set_password(password)
+        user.is_superuser = True
+        user.save()
+        return user
+
+    def create_user(self, username, password):
+        user = self.model(username=username)
+        user.set_password(password)
+        user.save()
+        return user
+
+    def get_by_natural_key(self, username):
+        case_insensitive_username_field = '{}__iexact'.format(self.model.USERNAME_FIELD)
+        return self.get(**{case_insensitive_username_field: username})
 
 
 class User(AbstractBaseUser):
     class Meta:
         db_table = 'user'
     USERNAME_FIELD = 'username'
+    objects = UserManager()
 
     username = models.CharField(_('username'), max_length=50, null=False, blank=False, unique=True)
     interests = models.TextField(_('interests'), null=True, blank=True)
