@@ -37,6 +37,8 @@ class User(AbstractBaseUser):
     password = models.CharField(_('password'), max_length=128, null=False, blank=False)
     photo = models.ImageField(_('photo'), upload_to=PROFILE_UPLOAD_DIR, null=True, blank=True)
 
+    points = models.DecimalField(_('points'), default=0, max_digits=20, decimal_places=0)
+
     def __str__(self):
         return f'{self.username}'
 

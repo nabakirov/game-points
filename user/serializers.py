@@ -5,8 +5,8 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'interests', 'date_joined', 'photo')
-        read_only_fields = ('date_joined',)
+        fields = ('id', 'username', 'interests', 'date_joined', 'photo', 'points')
+        read_only_fields = ('date_joined', 'points')
 
 
 class PasswordField(serializers.CharField):
