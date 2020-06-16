@@ -141,6 +141,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'EXCEPTION_HANDLER': 'gamepoints.views.exception_handler',
     'NON_FIELD_ERRORS_KEY': 'non_field_errors',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20,
