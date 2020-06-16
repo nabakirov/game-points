@@ -8,6 +8,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'interests', 'date_joined', 'photo', 'points')
         read_only_fields = ('date_joined', 'points')
 
+    def validate_username(self, username):
+        if User.objects.filter(username__iexact=username).exists():
+            raise exceptions.ValidationError('user with this username already exists.', code='unique')
+        return username
+
 
 class PasswordField(serializers.CharField):
     def __init__(self, *args, **kwargs):
