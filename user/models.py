@@ -10,6 +10,7 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
 
     username = models.CharField(_('username'), max_length=50, null=False, blank=False, unique=True)
+    interests = models.TextField(_('interests'), null=True, blank=True)
     date_joined = models.DateTimeField(_('registration date'), auto_now_add=True)
     is_active = models.BooleanField(_('is active'), default=True)
     is_superuser = models.BooleanField(_('is superuser'), default=False)
