@@ -161,3 +161,7 @@ SIMPLE_JWT = {
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 AUTH_USER_MODEL = 'user.User'
+
+AUTHENTICATION_BACKENDS = [
+    "user.backends.ModelBackend",
+]
