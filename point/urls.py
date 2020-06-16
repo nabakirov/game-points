@@ -8,5 +8,5 @@ router.register('transactions', views.TransactionViewSet, 'transactions')
 
 
 urlpatterns = [
-    path('v1/', include(router.urls))
+    path('v1/', include(router.urls), name='transactions')
 ]
