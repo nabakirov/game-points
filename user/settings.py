@@ -1,0 +1,1 @@
+PROFILE_UPLOAD_DIR = 'users/profile'
