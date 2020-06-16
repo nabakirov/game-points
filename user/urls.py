@@ -13,5 +13,11 @@ urlpatterns = [
     path('v1/signup/', views.SignUpView.as_view(), name='signup'),
     path('v1/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('v1/verify/', jwt_views.token_verify),
+    path('v1/profile/', views.ProfileView.as_view({
+        'get': 'retrieve',
+        'delete': 'destroy',
+        'put': 'update',
+        'patch': 'partial_update',
+    }), name='profile'),
     path('v1/', include(router.urls))
 ]

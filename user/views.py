@@ -1,4 +1,4 @@
-from rest_framework import generics, exceptions, response, viewsets
+from rest_framework import generics, exceptions, response, viewsets, mixins
 from . import serializers, models
 from django.contrib.auth import authenticate
 from django.utils import timezone
@@ -49,3 +49,17 @@ class SignUpView(generics.GenericAPIView):
         serializer.is_valid(True)
         serializer.save()
         return response.Response(data=get_login_response(serializer.instance, request))
+
+
+class ProfileView(mixins.RetrieveModelMixin,
+                  mixins.UpdateModelMixin,
+                  mixins.DestroyModelMixin,
+                  viewsets.GenericViewSet):
+    serializer_class = serializers.UserSerializer
+
+    def perform_destroy(self, instance):
+        instance.is_active = False
+        instance.save()
+
+    def get_object(self):
+        return self.request.user
