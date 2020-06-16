@@ -43,6 +43,7 @@ DJANGO_APPS = [
 
 MY_APPS = [
     'user',
+    'point',
 ]
 
 THIRD_PARTY_APPS = []
