@@ -44,4 +44,14 @@ class User(AbstractBaseUser):
     def __str__(self):
         return f'{self.username}'
 
+    @property
+    def is_staff(self):
+        return self.is_superuser
+
+    def has_module_perms(self, *args, **kwargs):
+        return self.is_superuser
+
+    def has_perm(self, *args, **kwargs):
+        return self.is_superuser
+
 
