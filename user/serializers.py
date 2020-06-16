@@ -32,8 +32,8 @@ class LoginSerializer(serializers.Serializer):
 class SignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'interests', 'date_joined', 'photo', 'password')
-        read_only_fields = ('date_joined',)
+        fields = ('id', 'username', 'interests', 'date_joined', 'photo', 'password', 'points')
+        read_only_fields = ('date_joined', 'points')
 
     def validate_username(self, username):
         if User.objects.filter(username__iexact=username).exists():
