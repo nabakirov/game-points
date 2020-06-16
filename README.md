@@ -4,6 +4,13 @@ To change user points create transaction
 to raise points use *add* transaction type
 to exchange points use *exchange* transaction type
 
+## Environment variables
+* SECRET_KEY=secret
+* DEBUG=True/False
+* DATABASE_URL=sqlite:///secret/db.sqlite
+* ALLOWED_HOSTS=*
+* RESOURCES_DIR=resources/
+
 ## Authorization
 You will be given access and refresh tokens from login or signup API
 You have to submit access token in headers of request   
