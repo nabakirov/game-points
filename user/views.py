@@ -37,3 +37,15 @@ class UsersView(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return models.User.objects.all()
+
+
+class SignUpView(generics.GenericAPIView):
+    authentication_classes = ()
+    permission_classes = ()
+    serializer_class = serializers.SignUpSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data, context={'request': request})
+        serializer.is_valid(True)
+        serializer.save()
+        return response.Response(data=get_login_response(serializer.instance, request))
