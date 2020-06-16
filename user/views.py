@@ -57,9 +57,5 @@ class ProfileView(mixins.RetrieveModelMixin,
                   viewsets.GenericViewSet):
     serializer_class = serializers.UserSerializer
 
-    def perform_destroy(self, instance):
-        instance.is_active = False
-        instance.save()
-
     def get_object(self):
         return self.request.user
