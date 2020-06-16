@@ -19,5 +19,5 @@ urlpatterns = [
         'put': 'update',
         'patch': 'partial_update',
     }), name='profile'),
-    path('v1/', include(router.urls))
+    path('v1/profile/password/', views.PasswordView.as_view(), name='update_password'),
 ]

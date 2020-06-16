@@ -1,4 +1,4 @@
-from rest_framework import generics, exceptions, response, viewsets, mixins
+from rest_framework import generics, exceptions, response, viewsets, mixins, views
 from . import serializers, models
 from django.contrib.auth import authenticate
 from django.utils import timezone
@@ -59,3 +59,11 @@ class ProfileView(mixins.RetrieveModelMixin,
 
     def get_object(self):
         return self.request.user
+
+
+class PasswordView(views.APIView):
+    def post(self, request):
+        serializer = serializers.UpdatePasswordSerializer(data=request.data, instance=request.user, context={'request': request})
+        serializer.is_valid(True)
+        serializer.save()
+        return response.Response(status=200)
